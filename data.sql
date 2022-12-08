@@ -26,3 +26,13 @@ INSERT INTO animals VALUES (5, 'Charmander', '2020-02-08', 0, alse, 11, null),
 (9, 'Boarmon', '2005-06-07', 7, true, 20.4,null),
 (10, 'Blossom', '1998-10-13', 3, true, 17, null),
 (11, 'Ditto', '2022-05-14', 4, true, 22, null);
+
+UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Sam Smith') WHERE name IN ('Agumon');
+
+UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Jennifer Orwell') WHERE name IN ('Gabumon','Pikachu');
+
+UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Dean Winchester') WHERE name IN ('Angemon','Boarmon');
+
+UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Melody Pond') WHERE name IN ('Charmander','Squirtle','Blossom');
+
+UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Bob') WHERE name IN ('Devimon','Plantmon');
