@@ -23,3 +23,69 @@ SELECT * FROM animals WHERE name != 'Gabumon';
 
 -- Find all animals with a weight between 10.4kg and 17.3kg
 SELECT * from animals WHERE weight >= 10.4 AND weight <=17.3;
+
+
+BEGIN;
+
+UPDATE animals
+ SET species='unspecified'
+WHERE species IS NULL;
+
+ROLLBACK;
+
+-- Inside a transaction:
+BEGIN;
+-- Update the animals table by setting the species column to digimon for all animals that have a name ending in mon.
+UPDATE animals
+SET species = 'digimon'
+WHERE name Like '%mon';
+
+-- Update the animals table by setting the species column to pokemon for all animals that don't have species already set.
+UPDATE animals
+ SET species='Pokemon'
+WHERE species IS NULL;
+-- Commit the transaction.
+COMMIT;
+
+-- Delete all records in a Transaction.
+BEGIN;
+DELETE FROM animals;
+SELECT * FROM animals;
+ROLLBACK;
+
+
+-- Inside a transaction:
+START TRANSACTION;
+-- Delete all animals born after Jan 1st, 2022.
+
+DELETE FROM animals
+WHERE date_of_birth > '2022-01-01';
+-- Create a savepoint for the transaction.
+SAVEPOINT point1;
+
+UPDATE animals
+SET weight = weight * -1;
+
+
+ROLLBACK to savepoint point1;
+
+
+UPDATE animals
+SET weight = weight * -1;
+-- Commit transaction
+COMMIT;
+
+
+
+SELECT COUNT(*) FROM animals;
+
+SELECT MIN(escape_attempts) FROM animals;
+
+SELECT AVG(weight) FROM animals;
+
+SELECT COUNT(neutered) FROM animals GROUP BY neutered;
+
+SELECT  species,max(weight),min(weight) FROM animals GROUP BY species;
+
+SELECT name, AVG(escape_attempts) FROM animals WHERE  date_of_birth> '1990-01-01' AND date_of_birth < '2000-12-31' GROUP BY name;
+
