@@ -36,3 +36,34 @@ UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Dean Win
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Melody Pond') WHERE name IN ('Charmander','Squirtle','Blossom');
 
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Bob') WHERE name IN ('Devimon','Plantmon');
+
+INSERT INTO vets(id,name,age,date_of_graduation)
+VALUES (1,'William Tatcher',45,'2000-04-23'),
+		(2,'Maisy Smith',26,'2019-06-17'),
+		(3,'Stephanie Mendez',64,'1981-05-04'),
+		(4,'Jack Harkness',38,'2008-08-06');
+
+--Add Visits Table
+
+INSERT INTO visits(id,
+animals_id,vets_id,visit_date)
+VALUES (1,9,1,'2020-05-24'),
+       (2,9,3,'2020-07-22'),
+       (3,8,4,'2021-02-02'),
+       (4,7,2,'2020-06-05'),
+       (5,7,2,'2020-03-08'),
+       (6,7,2,'2020-05-14'),
+       (7,10,3,'2021-05-04'),
+       (8,1,4,'2021-02-24'),
+       (9,2,2,'2019-12-21'),
+       (10,2,1,'2020-08-10'),
+       (11,2,2,'2021-04-07'),
+       (12,3,3,'2019-09-29'),
+       (13,4,4,'2020-10-03'),
+       (14,4,4,'2020-11-04'),
+       (15,5,2,'2019-06-24'),
+       (16,5,2,'2019-05-15'),
+       (17,5,2,'2020-02-27'),
+       (18,5,2,'2020-03-08'),
+       (19,5,3,'2020-05-24'),
+       (20,5,1,'2021-06-11');
